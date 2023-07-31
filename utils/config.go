@@ -46,3 +46,19 @@ func ConfigExists(configPath string) {
 		os.Exit(0)
 	}
 }
+
+func LoadConfig(configPath string) Config {
+	var config Config
+
+	file, err := ioutil.ReadFile(configPath)
+	if err != nil {
+		log.Fatalf("Unable to read file: %v", err)
+	}
+
+	err = yaml.Unmarshal(file, &config)
+	if err != nil {
+		log.Fatalf("Unable to parse file: %v", err)
+	}
+
+	return config
+}
