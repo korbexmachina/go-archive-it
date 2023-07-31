@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -12,9 +11,9 @@ import (
 )
 
 type Config struct {
-	vault_path     []string
-	archive_path   string
-	archive_type   int
+	VaultPath []string
+	ArchivePath string
+	ArchiveType uint8
 }
 
 
@@ -32,23 +31,23 @@ func main() {
 		}
 
 		config := Config{
-			vault_path: []string{"~/notes, ~/dev"},
-			archive_path: "./archive",
-			archive_type: 2,
+			VaultPath: []string{"~/notes", "~/dev"},
+			ArchivePath: "./archive",
+			ArchiveType: 2,
 		}
 
-		data, err2 := yaml.Marshal(&config)
+		c, err := yaml.Marshal(config)
 
-		if err2 != nil {
-			log.Fatalf("Failed to serialize data: %v", err2)
+		if err != nil {
+			log.Fatalf("Failed to serialize data: %v", err)
 		}
 
-		err = ioutil.WriteFile(config_path, data, os.ModeAppend | 0664)
+		err = ioutil.WriteFile(config_path, c, os.ModeAppend | 0664)
 		if err != nil {
 			log.Fatalf("Unable to write file: %v", err)
 		}
 
-		fmt.Printf("Config Created at %s, make any neccesary changes and run the program again", config_path)
+		log.Printf("Config Created at %s, make any neccesary changes and run the program again", config_path)
 		os.Exit(0)
 	}
 
