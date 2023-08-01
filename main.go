@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"path/filepath"
 	"time"
@@ -19,13 +18,9 @@ func main() {
 	utils.ConfigExists(configPath)
 	config := utils.LoadConfig(configPath)
 
-	vaultPath := config.VaultPath
-	archivePath := config.ArchivePath
-	archiveType := config.ArchiveType
-	
-	// fmt.Printf("Archive Path = %s\nArchive Type = %d\n", archivePath, archiveType)
-
-
+	for _, path := range config.VaultPath {
+		utils.Archive(path, config.ArchivePath, config.ArchiveType)
+	}
 
 	elapsed := time.Since(start)
 	log.Printf("Archive(s) created in [[ %s ]]", elapsed)

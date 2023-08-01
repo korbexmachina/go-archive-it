@@ -1,4 +1,6 @@
 *.yaml
 *.yml
 *.txt
-
+*.tar
+*.gz
+*.DS_Store
