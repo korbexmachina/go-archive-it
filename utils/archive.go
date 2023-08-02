@@ -71,26 +71,25 @@ func Archive(vaultPath string, archivePath string, archiveType uint8) {
 }
 
 func tarArchive(vaultPath string, archive io.Writer) error {
-	entries, err := os.ReadDir(vaultPath) // Read all entries in the target directory
-	if err != nil {
-		return err
-	}
-
 	tw := tar.NewWriter(archive)
 	defer tw.Close()
 
-	for _, file := range entries { // FIXME: Creating invalid archives / Not working with sub-directories
-		if !file.IsDir() {
-			err := addFile(tw, filepath.Join(vaultPath, file.Name()))
+	// Traverse the directory and all of its subdirectories and add each file found to the archive
+	err := filepath.Walk(vaultPath,
+		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				return err
 			}
-		} else {
-			err := tarArchive(filepath.Join(vaultPath, file.Name()), archive)
-			if err != nil {
-				return err
+			if !info.IsDir() {
+				err = addFile(tw, path)
+				if err != nil {
+					return err
+				}
 			}
-		}
+			return nil
+	})
+	if err != nil {
+		return err
 	}
 	return nil
 }
