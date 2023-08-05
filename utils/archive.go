@@ -141,6 +141,8 @@ func Cleanup(archivePath string, retention uint8) error {
 	files, err := os.ReadDir(archivePath)
 	if len(files) < int(retention) {
 		return nil
+	} else {
+		log.Printf("Retention cap [[ %d ]] exceeded - Cleaning up %s...", retention, archivePath)
 	}
 	if err != nil {
 		return err
@@ -162,6 +164,7 @@ func Cleanup(archivePath string, retention uint8) error {
 		}
 	}
 
-	os.Remove(oldestFile.Name())
+	os.Remove(filepath.Join(archivePath, oldestFile.Name()))
+	log.Printf("%s succesfully cleaned up!", archivePath)
 	return nil
 }

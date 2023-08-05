@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"os/user"
 	"path/filepath"
 	"strings"
@@ -11,12 +12,15 @@ import (
 	"github.com/korbexmachina/go-archive-it/utils"
 )
 
-
-
 func main() {
 	start := time.Now()
-	// config_path, err := filepath.Abs("~/.config/go-archive-it/config.yaml")
-	configPath, _ := filepath.Abs("./test-conf/config.yaml") // test path
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		log.Fatalf("Failed to resolve user config directory: %s", err)
+	}
+
+	configPath := filepath.Join(configDir, "go-archive-it/config.yaml") // Production path
+	// configPath, _ := filepath.Abs("./test-conf/config.yaml") // test path
 
 	utils.ConfigExists(configPath)
 	config := utils.LoadConfig(configPath)
@@ -35,17 +39,21 @@ func main() {
 	}
 
 	var wg sync.WaitGroup
+	// The loop that actually runs everything
 	for _, path := range config.VaultPath {
+		// Tilda expansion
 		if path == "~" {
 			path = dir
 		} else if strings.HasPrefix(path, "~/") {
 			path = filepath.Join(dir, path[2:])
 		}
+
 		wg.Add(1)
 		go func(path string) {
 			defer wg.Done()
 			utils.Archive(path, archivePath, config.ArchiveType)
 		}(path)
+
 		wg.Add(1)
 		go func(path string) {
 			defer wg.Done()
