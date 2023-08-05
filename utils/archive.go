@@ -136,3 +136,32 @@ func addFile(tw *tar.Writer, name string) error {
 
 	return nil
 }
+
+func Cleanup(archivePath string, retention uint8) error {
+	files, err := os.ReadDir(archivePath)
+	if len(files) < int(retention) {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+
+	oldestFile, err := files[0].Info()
+	if err != nil {
+		return err
+	}
+	oldest := time.Now()
+	for _, file := range files[1:] {
+		info, err := file.Info()
+		if err != nil {
+			return err
+		}
+		if info.ModTime().Before(oldest) {
+			oldestFile = info
+			oldest = info.ModTime()
+		}
+	}
+
+	os.Remove(oldestFile.Name())
+	return nil
+}

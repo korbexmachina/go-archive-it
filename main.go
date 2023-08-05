@@ -46,6 +46,14 @@ func main() {
 			defer wg.Done()
 			utils.Archive(path, archivePath, config.ArchiveType)
 		}(path)
+		wg.Add(1)
+		go func(path string) {
+			defer wg.Done()
+			err := utils.Cleanup(filepath.Join(archivePath, filepath.Base(path)), config.Retention)
+			if err != nil {
+				log.Fatalf("Failed to cleanup: %s", err)
+			}
+		}(path)
 	}
 
 	wg.Wait()

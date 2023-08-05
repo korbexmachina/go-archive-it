@@ -13,6 +13,7 @@ type Config struct {
 	VaultPath []string
 	ArchivePath string
 	ArchiveType uint8
+	Retention uint8
 }
 
 
@@ -29,6 +30,7 @@ func ConfigExists(configPath string) {
 			VaultPath: []string{"~/notes", "~/dev"},
 			ArchivePath: "./archive",
 			ArchiveType: 2,
+			Retention: 10,
 		}
 
 		c, err := yaml.Marshal(config) // Serialize the struct
