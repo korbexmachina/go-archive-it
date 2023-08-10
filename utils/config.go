@@ -27,8 +27,8 @@ func ConfigExists(configPath string) {
 		}
 
 		config := Config{
-			VaultPath: []string{"~/notes", "~/dev"},
-			ArchivePath: "./archive",
+			VaultPath: []string{"~/example", "~/directories"},
+			ArchivePath: "~/archive",
 			ArchiveType: 1,
 			Retention: 10,
 		}
