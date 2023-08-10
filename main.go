@@ -14,10 +14,12 @@ import (
 
 func main() {
 	start := time.Now()
-	configDir, err := os.UserConfigDir()
+	configDir, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatalf("Failed to resolve user config directory: %s", err)
 	}
+	configDir = filepath.Join(configDir, ".config")
+	// log.Fatalf(configDir)
 
 	configPath := filepath.Join(configDir, "go-archive-it/config.yaml") // Production path
 	// configPath, _ := filepath.Abs("./test-conf/config.yaml") // test path
