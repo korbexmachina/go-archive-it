@@ -8,7 +8,7 @@ A lightweight archive management utility that can be managed with a YAML config 
   - If the config does not exist, the program will create it with the following default contents:
     ```yaml
     vaultpath:
-      - ~/sample
+      - ~/example
       - ~/directories
     archivepath: ~/archive
     archivetype: 1
