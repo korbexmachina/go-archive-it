@@ -14,6 +14,7 @@ import (
 
 func main() {
 	start := time.Now()
+	count := 0
 	configDir, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatalf("Failed to resolve user config directory: %s", err)
@@ -43,6 +44,7 @@ func main() {
 	var wg sync.WaitGroup
 	// The loop that actually runs everything
 	for _, path := range config.VaultPath {
+		count++
 		// Tilda expansion
 		if path == "~" {
 			path = dir
@@ -68,5 +70,5 @@ func main() {
 
 	wg.Wait()
 	elapsed := time.Since(start)
-	log.Printf("Archive(s) created in [[ %f ]] seconds", elapsed.Seconds())
+	log.Printf("[[ %d ]] Archive(s) created in [[ %f ]] seconds", count, elapsed.Seconds())
 }
