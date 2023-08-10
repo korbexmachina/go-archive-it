@@ -70,5 +70,5 @@ func main() {
 
 	wg.Wait()
 	elapsed := time.Since(start)
-	log.Printf("[[ %d ]] Archive(s) created in [[ %f ]] seconds", count, elapsed.Seconds())
+	log.Printf("%d Archive(s) created in [[ %f ]] seconds", count, elapsed.Seconds())
 }
