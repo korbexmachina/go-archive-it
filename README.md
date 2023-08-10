@@ -19,3 +19,13 @@ A lightweight archive management utility that can be managed with a YAML config 
     - `archivepath` is the path to the directory where your archives will be stored
     - `archivetype` can be set to `0` for uncompressed `.tar` archives or `1` for `.tar.gz`
     - `retention` is the number* of archives you want to keep at any givven time for each of the directories in vaultpath (it is stored as an 8 bit integer, so it must be less than 256)
+
+## Installation
+### Homebrew (MacOS)
+```
+brew tap korbexmachina/tap
+brew install go-archive-it
+```
+
+## Dependencies
+[yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
