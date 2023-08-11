@@ -2,6 +2,10 @@
 
 A lightweight archive management utility that can be managed with a YAML config file. I reccomend running it with a cron job, the script will not generate more than one archive per directory per day.
 
+## Documentation
+
+Full documentation available [here](https://korbexmachina.github.io/go-archive-it/)
+
 ## What you need to know
 
 - The program looks for a config file at `~/.config/go-archive-it/config.yaml`
