@@ -7,6 +7,8 @@ brew tap korbexmachina/tap
 brew install go-archive-it
 ```
 
+---
+
 ## Build From Source:
 
 - Requires Go v1.20 or later
