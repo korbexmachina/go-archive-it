@@ -1,5 +1,7 @@
 # Installation
 
+[Back](index.md)
+
 ## Homebrew (MacOS)
 
 ```
