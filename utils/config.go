@@ -34,7 +34,6 @@ func ConfigExists(configPath string) {
 		}
 
 		c, err := yaml.Marshal(config) // Serialize the struct
-
 		if err != nil {
 			log.Fatalf("Failed to serialize data: %v", err)
 		}
