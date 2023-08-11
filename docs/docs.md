@@ -1,5 +1,7 @@
 # Documentation
 
+[Back](index.md)
+
 ## main.go
 
 ### main()
