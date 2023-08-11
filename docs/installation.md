@@ -1,6 +1,6 @@
-# Installation
-
 [Back](index.md)
+
+# Installation
 
 ## Homebrew (MacOS)
 
