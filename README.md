@@ -1,3 +1,6 @@
+![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/korbexmachina/go-archive-it)
+![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/korbexmachina/go-archive-it/latest/main)
+
 # Go Archive It!
 
 A lightweight archive management utility that can be managed with a YAML config file. I reccomend running it with a cron job, the script will not generate more than one archive per directory per day.
@@ -25,7 +28,9 @@ Full documentation available [here](https://korbexmachina.github.io/go-archive-i
     - `retention` is the number* of archives you want to keep at any given time for each of the directories in vaultpath (it is stored as an 8 bit integer, so it must be less than 256)
 
 ## Installation
+
 ### Homebrew (MacOS)
+
 ```
 brew tap korbexmachina/tap
 brew install go-archive-it
