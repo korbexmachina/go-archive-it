@@ -15,15 +15,29 @@ import (
 func main() {
 	start := time.Now()
 	count := 0
+
 	configDir, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatalf("Failed to resolve user config directory: %s", err)
 	}
+
 	configDir = filepath.Join(configDir, ".config")
 	// log.Fatalf(configDir)
-
-	configPath := filepath.Join(configDir, "go-archive-it/config.yaml") // Production path
+	configPath := filepath.Join(configDir, "go-archive-it/config.yaml")
 	// configPath, _ := filepath.Abs("./test-conf/config.yaml") // test path
+
+	if len(os.Args) < 2 {
+		log.Print("Running with no arguments\n")
+	} else {
+
+		switch os.Args[1] {
+		case "ext":
+			configPath = filepath.Join(configDir, "go-archive-it/ext.yaml")
+			log.Printf("Running with external config: %s", configPath)
+		default:
+			log.Fatalf("Unknown argument: %s", os.Args[1])
+		}
+	}
 
 	utils.ConfigExists(configPath)
 	config := utils.LoadConfig(configPath)
