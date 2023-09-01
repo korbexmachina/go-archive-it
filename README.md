@@ -4,7 +4,7 @@
 
 # Go Archive It!
 
-A lightweight archive management utility that can be managed with a YAML config file. I reccomend running it with a cron job, the files are timestamped to prevent duplication.
+A lightweight archive management utility with YAML based configuration. I recommend running it with a cron job, the files are timestamped to prevent duplication.
 
 ## Documentation
 
@@ -27,6 +27,13 @@ Full documentation available [here](https://korbexmachina.github.io/go-archive-i
     - `archivepath` is the path to the directory where your archives will be stored
     - `archivetype` can be set to `0` for uncompressed `.tar` archives or `1` for `.tar.gz`
     - `retention` is the number of archives you want to keep at any given time for each of the directories in vaultpath (it is stored as an 8 bit integer, so it must be less than 256)
+   
+### Arguments
+
+- `ext`
+  - Runs the program based on a file at `~/.config/go-archive-it/config.yaml`
+    - Configuration is the same as running the program with the default path
+  - Intended for archiving onto an external drive with preconfigured options
 
 ## Installation
 
@@ -36,6 +43,13 @@ Full documentation available [here](https://korbexmachina.github.io/go-archive-i
 brew tap korbexmachina/tap
 brew install go-archive-it
 ```
+
+## Roadmap
+
+- `-e` as an alternative to the `ext` argument
+- `-p` argument for passing an arbitrary filename for configuration, to allow for as many user configurations as needed
+- `-h` argument for help
+- `init`/`-i` argument for initializing config files with arbitrary nems (maybe with additional options for sensible defaults) 
 
 ## Dependencies
 [yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
