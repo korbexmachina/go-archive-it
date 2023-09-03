@@ -40,6 +40,18 @@ Full documentation available [here](https://korbexmachina.github.io/go-archive-i
   - Initialize a named config file at `~/.config/go-archive-it/[NAME].yaml`
 - `-p, path [NAME]`
   - Run the program withthe named config file at `~/.config/go-archive-it/[NAME].yaml`
+ 
+### Help
+```
+Usage: go-archive-it [OPTION] ...
+---------------------------------
+-h, help                Display this help message
+-e, ext                 Use external config file (~/.config/go-archive-it/ext.yaml)
+-i, init [NAME]         Initialize named config file (~/.config/go-archive-it/[NAME].yaml)
+-p, path [NAME]         Use named config file (~/.config/go-archive-it/[NAME].yaml)
+---------------------------------
+Running with no arguments will use the default config file (~/.config/go-archive-it/config.yaml)
+```
 
 ## Installation
 
@@ -57,6 +69,7 @@ brew install go-archive-it
 - ~~`-h` argument for help~~
 - ~~`init`/`-i` argument for initializing config files with arbitrary names~~
 - Default config initialization option (templates)
+- Progress bar
 
 ## Dependencies
 [yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
