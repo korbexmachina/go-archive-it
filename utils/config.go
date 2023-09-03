@@ -45,6 +45,8 @@ func ConfigExists(configPath string) {
 
 		log.Printf("Config Created at %s, make any neccesary changes and run the program again", configPath)
 		os.Exit(0)
+	} else {
+		log.Printf("Config found at %s", configPath)
 	}
 }
 

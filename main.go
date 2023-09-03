@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"os/user"
@@ -26,14 +27,41 @@ func main() {
 	configPath := filepath.Join(configDir, "go-archive-it/config.yaml")
 	// configPath, _ := filepath.Abs("./test-conf/config.yaml") // test path
 
+	helpMessage := `
+Usage: go-archive-it [OPTION] ...
+---------------------------------
+-h, help		Display this help message
+-e, ext			Use external config file (~/.config/go-archive-it/ext.yaml)
+-i, init [NAME]		Initialize named config file (~/.config/go-archive-it/[NAME].yaml)
+-p, path [NAME]		Use named config file (~/.config/go-archive-it/[NAME].yaml)
+---------------------------------
+Running with no arguments will use the default config file (~/.config/go-archive-it/config.yaml)
+`
+
 	if len(os.Args) < 2 {
 		log.Print("Running with no arguments\n")
 	} else {
 
 		switch os.Args[1] {
-		case "ext":
+		case "-h", "help":
+			fmt.Printf(helpMessage)
+			os.Exit(0)
+		case "-e", "ext":
 			configPath = filepath.Join(configDir, "go-archive-it/ext.yaml")
 			log.Printf("Running with external config: %s", configPath)
+		case "-i", "init":
+			name := ""
+			if len(os.Args) < 3 || os.Args[2] == "" {
+				name = "go-archive-it/config"
+			} else {
+				name = "go-archive-it/" + os.Args[2]
+			}
+			utils.ConfigExists(filepath.Join(configDir, name + ".yaml"))
+			os.Exit(0)
+		case "-p", "path":
+			name := "go-archive-it/" + os.Args[2]
+			configPath = filepath.Join(configDir, name + ".yaml")
+			log.Printf("Running with named config: %s", configPath)
 		default:
 			log.Fatalf("Unknown argument: %s", os.Args[1])
 		}
