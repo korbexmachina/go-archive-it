@@ -69,7 +69,6 @@ brew install go-archive-it
 - ~~`-h` argument for help~~
 - ~~`init`/`-i` argument for initializing config files with arbitrary names~~
 - Default config initialization option (templates)
-- Progress bar
 
 ## Dependencies
 [yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
