@@ -12,8 +12,14 @@ In a world where your files and data are increasingly stored and controlled by l
 
 Full documentation available [here](https://korbexmachina.github.io/go-archive-it/)
 
-## What you need to know
+## Usage
 
+- I reccommend using a cronjob to automate your archives
+  - If you are using the homebrew installation, that might look something like this:
+    ```
+    * * * * * /usr/local/Cellar/go-archive-it/0.0.7/bin/go-archive-it >> ~/logs/go-archive-it.txt 2>&1
+    ```
+  - If you built the project from source, I will assume you know what you are doing, but the only real change will be the path to the binary
 - The program looks for a config file at `~/.config/go-archive-it/config.yaml`
   - If the config does not exist, the program will create it with the following default contents:
     ```yaml
