@@ -69,6 +69,8 @@ brew install go-archive-it
 - ~~`-h` argument for help~~
 - ~~`init`/`-i` argument for initializing config files with arbitrary names~~
 - Default config initialization option (templates)
+- Archive the path beggining at the directory being archived rather than including the directories above it
+  - The program does currently ignore their other contents, but the nesting is still mildly annoying when accessing the archives
 
 ## Dependencies
 [yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
