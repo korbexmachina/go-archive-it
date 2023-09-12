@@ -4,7 +4,9 @@
 
 # Go Archive It!
 
-A lightweight archive management utility with YAML based configuration. I recommend running it with a cron job, the files are timestamped to prevent duplication.
+A lightweight archive management utility with YAML based configuration.
+
+In a world where your files and data are increasingly stored and controlled by large corporations, there are those who wish to take that power back. However, with great power comes great responsibility, and it is important to practice good data stewardship. A good place to start is by keeping rolling backups, a process which _Go Archive It_ aims to make as straightforward and painless as possible.
 
 ## Documentation
 
