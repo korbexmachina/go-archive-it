@@ -17,7 +17,8 @@ Full documentation available [here](https://korbexmachina.github.io/go-archive-i
 - I reccommend using a cronjob to automate your archives
   - If you are using the homebrew installation, that might look something like this:
     ```
-    * * * * * /usr/local/Cellar/go-archive-it/0.0.7/bin/go-archive-it >> ~/logs/go-archive-it.txt 2>&1
+    # Run go-archive-it at 9am every day
+    0 9 * * * /usr/local/Cellar/go-archive-it/0.0.7/bin/go-archive-it >> ~/logs/go-archive-it.txt 2>&1
     ```
   - If you built the project from source, I will assume you know what you are doing, but the only real change will be the path to the binary
 - The program looks for a config file at `~/.config/go-archive-it/config.yaml`
