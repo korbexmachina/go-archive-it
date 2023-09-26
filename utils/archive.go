@@ -137,12 +137,14 @@ func addFile(tw *tar.Writer, name string) error {
 	return nil
 }
 
-func Cleanup(archivePath string, retention uint8) error {
+func Cleanup(archivePath string, retention uint8, verbose bool) error {
 	files, err := os.ReadDir(archivePath)
 	if len(files) < int(retention) {
 		return nil
 	} else {
-		log.Printf("Retention cap [[ %d ]] exceeded - Cleaning up %s...", retention, archivePath)
+		if verbose == true {
+			log.Printf("Retention cap [[ %d ]] exceeded - Cleaning up %s...", retention, archivePath)
+		}
 	}
 	if err != nil {
 		return err
@@ -165,6 +167,8 @@ func Cleanup(archivePath string, retention uint8) error {
 	}
 
 	os.Remove(filepath.Join(archivePath, oldestFile.Name()))
-	log.Printf("%s succesfully cleaned up!", archivePath)
+	if verbose == true {
+		log.Printf("%s succesfully cleaned up!", archivePath)
+	}
 	return nil
 }

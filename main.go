@@ -16,6 +16,7 @@ import (
 func main() {
 	start := time.Now()
 	count := 0
+	verbose := false
 
 	configDir, err := os.UserHomeDir()
 	if err != nil {
@@ -34,6 +35,7 @@ Usage: go-archive-it [OPTION] ...
 -e, ext			Use external config file (~/.config/go-archive-it/ext.yaml)
 -i, init [NAME]		Initialize named config file (~/.config/go-archive-it/[NAME].yaml)
 -p, path [NAME]		Use named config file (~/.config/go-archive-it/[NAME].yaml)
+-v, verbose		Verbose logging
 ---------------------------------
 Running with no arguments will use the default config file (~/.config/go-archive-it/config.yaml)
 `
@@ -62,6 +64,8 @@ Running with no arguments will use the default config file (~/.config/go-archive
 			name := "go-archive-it/" + os.Args[2]
 			configPath = filepath.Join(configDir, name + ".yaml")
 			log.Printf("Running with named config: %s", configPath)
+		case "-v", "verbose":
+			verbose = true
 		default:
 			log.Fatalf("Unknown argument: %s", os.Args[1])
 		}
@@ -103,7 +107,7 @@ Running with no arguments will use the default config file (~/.config/go-archive
 		wg.Add(1)
 		go func(path string) {
 			defer wg.Done()
-			err := utils.Cleanup(filepath.Join(archivePath, filepath.Base(path)), config.Retention)
+			err := utils.Cleanup(filepath.Join(archivePath, filepath.Base(path)), config.Retention, verbose)
 			if err != nil {
 				log.Fatalf("Failed to cleanup: %s", err)
 			}
