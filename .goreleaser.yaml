@@ -36,7 +36,21 @@ changelog:
       - "^docs:"
       - "^test:"
 
-# .goreleaser.yaml
+# brews:
+#   - repository:
+#       owner: korbexmachina
+#       name: homebrew-tap
+#     folder: Formula
+#     goarm: "6"
+#     homepage: https://github.com/korbexmachina/go-archive-it
+#     description: Deliver Go binaries as fast and easily as possible
+#     license: MIT
+#     test: |
+#       system "#{bin}/go-archive-it -v"
+#     dependencies:
+#       - name: go
+#         type: optional
+
 brews:
   -
     # Name of the recipe
@@ -103,7 +117,7 @@ brews:
     # in case there is an indicator for prerelease in the tag e.g. v1.0.0-rc1
     #
     # Templates: allowed
-    skip_upload: true
+    # skip_upload: true
 
     # So you can `brew test` your formula.
     #
@@ -153,10 +167,10 @@ brews:
         # above will be used as HEAD, allowing cross-repository pull requests.
         #
         # Since: v1.19
-        base:
-          owner: korbexmachina
-          name: homebrew-tap
-          branch: main
+        # base:
+        #   owner: korbexmachina
+        #   name: homebrew-tap
+        #   branch: main
 
       # Clone, create the file, commit and push, to a regular Git repository.
       #
