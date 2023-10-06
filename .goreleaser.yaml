@@ -157,9 +157,3 @@ brews:
       # empty.
       #
       # Since: v1.18
-      git:
-        # The Git URL to push.
-        #
-        # Templates: allowed
-        url: 'https://github.com/korbexmachina/homebrew-tap'
-
