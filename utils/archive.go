@@ -1,3 +1,8 @@
+/*
+Utilities required for go-archive-it
+
+https://github.com/korbexmachina/go-archive-it
+*/
 package utils
 
 import (
@@ -10,6 +15,20 @@ import (
 	"time"
 )
 
+/*
+Archive takes 3 arguments, and calls the appropriate archive function, passing on it's other arguments.
+
+args:
+	vaultPath string: The path to the directory that will be archived
+	archivePath string: The name of the directory where all of the archives are to be stored
+	archiveType uint8: The type of archive that is to be created
+		- 0 = .tar
+		- 1 = .tar.gz
+
+This function does not return a value and logs it's own errors.
+
+Archive creates any directories neccesary for it to function.
+*/
 func Archive(vaultPath string, archivePath string, archiveType uint8) {
 	fullPath := filepath.Join(archivePath, filepath.Base(vaultPath)) // Path to subdir in the archive dir
 	time := time.Now().Format(time.RFC3339)
@@ -94,6 +113,17 @@ func tarArchive(vaultPath string, archive io.Writer) error {
 	return nil
 }
 
+/*
+gztarArchive takes 2 arguments
+
+```
+args:
+- vaultPath string: The path to the directory being archived
+- archive io.writer: An io.Writer
+```
+
+gztarArchive initializes a ne gzip writer, and chains it onto a tar writer by calling tarArchive
+*/
 func gztarArchive(vaultPath string, archive io.Writer) error {
 	gw := gzip.NewWriter(archive)
 	defer gw.Close()
@@ -137,6 +167,16 @@ func addFile(tw *tar.Writer, name string) error {
 	return nil
 }
 
+/*
+Cleanup takes 3 arguments and returns an error
+
+args:
+	archivePath string: The path to the archive that is being cleaned up
+	retention uint8: The number of archives that should be retained
+	verbose bool: whether or not the verbose flag was specified
+
+Cleanup returns an error if something goes wrong
+*/
 func Cleanup(archivePath string, retention uint8, verbose bool) error {
 	files, err := os.ReadDir(archivePath)
 	if len(files) < int(retention) {

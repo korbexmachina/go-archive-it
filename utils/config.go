@@ -9,6 +9,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Config is a struct used to parse configuration files
 type Config struct {
 	VaultPath []string
 	ArchivePath string
@@ -17,6 +18,11 @@ type Config struct {
 }
 
 
+/*
+ConfigExists checks if a config file exists at a specified location
+
+If no config file is found, one is created with some default values, and the user is prompted to make any neccesary changes
+*/
 func ConfigExists(configPath string) {
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		log.Print("creating config directory")
@@ -50,6 +56,7 @@ func ConfigExists(configPath string) {
 	}
 }
 
+// LoadConfig reads and unmarshals a yaml file given a path, it returns a Config struct with the data from the file
 func LoadConfig(configPath string) Config {
 	var config Config
 
