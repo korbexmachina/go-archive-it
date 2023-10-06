@@ -123,7 +123,7 @@ brews:
     #
     # Template: allowed
     test: |
-      system "#{bin}/go-archive-it --version"
+      system "#{bin}/go-archive-it -h"
       # ...
 
     # Repository to push the generated files to.
