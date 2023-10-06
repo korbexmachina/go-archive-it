@@ -24,9 +24,7 @@ func main() {
 	}
 
 	configDir = filepath.Join(configDir, ".config")
-	// log.Fatalf(configDir)
 	configPath := filepath.Join(configDir, "go-archive-it/config.yaml")
-	// configPath, _ := filepath.Abs("./test-conf/config.yaml") // test path
 
 	helpMessage := `
 Usage: go-archive-it [OPTION] ...

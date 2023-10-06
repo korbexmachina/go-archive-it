@@ -2,3 +2,5 @@
 *.gz
 *.DS_Store
 goArchiveIt
+
+dist/
