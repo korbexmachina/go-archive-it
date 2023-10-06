@@ -35,18 +35,3 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
-
-brews:
-  -
-    # Repository to push the tap to.
-    tap:
-      owner: korbexmachina
-      name: homebrew-tap
-
-    # Your app's homepage.
-    # Default is empty.
-    homepage: 'https://github.com/korbexmachina/go-archive-it/'
-
-    # Your app's description.
-    # Default is empty.
-    description: "A lightweight archive management utility, written in Go."
