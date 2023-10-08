@@ -96,15 +96,12 @@ func tarArchive(vaultPath string, archive io.Writer) error {
 	// Traverse the directory and all of its subdirectories and add each file found to the archive
 	err := filepath.Walk(vaultPath,
 		func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-			if !info.IsDir() {
-				err = addFile(tw, path)
-				if err != nil {
-					return err
+				if !info.IsDir() {
+					err = addFile(tw, path, vaultPath)
+					if err != nil {
+						return err
+					}
 				}
-			}
 			return nil
 	})
 	if err != nil {
@@ -134,7 +131,7 @@ func gztarArchive(vaultPath string, archive io.Writer) error {
 	return nil
 }
 
-func addFile(tw *tar.Writer, name string) error {
+func addFile(tw *tar.Writer, name string, vaultPath string) error {
 	file, err := os.Open(name)
 	if err != nil {
 		return err
@@ -152,7 +149,10 @@ func addFile(tw *tar.Writer, name string) error {
 		return err
 	}
 
-	tarHeader.Name = name // Preserving directory structure
+	tarHeader.Name, err = filepath.Rel(vaultPath, name) // Preserving directory structure relative to the directory being archived
+	if err != nil {
+		return err
+	}
 
 	err = tw.WriteHeader(tarHeader)
 	if err != nil {
@@ -171,9 +171,9 @@ func addFile(tw *tar.Writer, name string) error {
 Cleanup takes 3 arguments and returns an error
 
 args:
-	archivePath string: The path to the archive that is being cleaned up
-	retention uint8: The number of archives that should be retained
-	verbose bool: whether or not the verbose flag was specified
+archivePath string: The path to the archive that is being cleaned up
+retention uint8: The number of archives that should be retained
+verbose bool: whether or not the verbose flag was specified
 
 Cleanup returns an error if something goes wrong
 */
