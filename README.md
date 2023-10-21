@@ -73,13 +73,13 @@ brew install go-archive-it
 
 ## Roadmap
 
-- ~~`-e` as an alternative to the `ext` argument~~
-- ~~`-p` argument for passing an arbitrary filename for configuration, to allow for as many user configurations as needed~~
-- ~~`-h` argument for help~~
-- ~~`init`/`-i` argument for initializing config files with arbitrary names~~
-- Default config initialization option (templates)
-- Archive the path beggining at the directory being archived rather than including the directories above it
-  - The program does currently ignore their other contents, but the nesting is still mildly annoying when accessing the archives
+- [x]`-e` as an alternative to the `ext` argument
+- [x] `-p` argument for passing an arbitrary filename for configuration, to allow for as many user configurations as needed
+- [x] `-h` argument for help
+- [x] `init`/`-i` argument for initializing config files with arbitrary names
+- [ ] Default config initialization option (templates)
+- [x] Archive the path beggining at the directory being archived rather than including the directories above it
+  - ~~The program does currently ignore their other contents, but the nesting is still mildly annoying when accessing the archives~~
 
 ## Dependencies
 [yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
