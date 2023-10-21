@@ -73,7 +73,7 @@ brew install go-archive-it
 
 ## Roadmap
 
-- [x]`-e` as an alternative to the `ext` argument
+- [x] `-e` as an alternative to the `ext` argument
 - [x] `-p` argument for passing an arbitrary filename for configuration, to allow for as many user configurations as needed
 - [x] `-h` argument for help
 - [x] `init`/`-i` argument for initializing config files with arbitrary names
