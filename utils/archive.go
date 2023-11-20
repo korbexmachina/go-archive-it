@@ -93,19 +93,18 @@ func tarArchive(vaultPath string, archive io.Writer) error {
 	tw := tar.NewWriter(archive)
 	defer tw.Close()
 
-	link, err := isSymlink(vaultPath)
+	// Check if the vaultPath is a symlink
+	isSymlink, err := isSymlink(vaultPath)
 	if err != nil {
 		return err
 	}
 
-	if link {
-		linkPath, err := os.Open(vaultPath)
+	// If it is a symlink, follow it and archive the directory it points to
+	if isSymlink == true {
+		vaultPath, err = os.Readlink(vaultPath)
 		if err != nil {
 			return err
 		}
-
-		// TODO: Handle symlinks
-
 	}
 
 	// Traverse the directory and all of its subdirectories and add each file found to the archive
@@ -228,12 +227,12 @@ func Cleanup(archivePath string, retention uint8, verbose bool) error {
 	return nil
 }
 
+// isSymlink takes a path as an argument and returns a bool and an error
+// isSymlink returns true if the path is a symlink, and false if it is not
 func isSymlink (path string) (bool, error) {
-	link := os.ModeSymlink.Perm()
-
-	if link == os.ModeSymlink {
-		return true, nil // File is a symlink
-	} else {
-		return false, nil // File is not a symlink
+	_, err := os.Readlink(path) // Check if the path is a symlink
+	if err != nil {
+		return false, nil // If it is not a symlink, return false
 	}
+	return true, nil // If it is a symlink, return true
 }
