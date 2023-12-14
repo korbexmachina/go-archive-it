@@ -27,16 +27,16 @@ func main() {
 	configPath := filepath.Join(configDir, "go-archive-it/config.yaml")
 
 	helpMessage := `
-Usage: go-archive-it [OPTION] ...
----------------------------------
--h, help		Display this help message
--e, ext			Use external config file (~/.config/go-archive-it/ext.yaml)
--i, init [NAME]		Initialize named config file (~/.config/go-archive-it/[NAME].yaml)
--p, path [NAME]		Use named config file (~/.config/go-archive-it/[NAME].yaml)
--v, verbose		Verbose logging
----------------------------------
-Running with no arguments will use the default config file (~/.config/go-archive-it/config.yaml)
-`
+	Usage: go-archive-it [OPTION] ...
+	---------------------------------
+	-h, help		Display this help message
+	-e, ext			Use external config file (~/.config/go-archive-it/ext.yaml)
+	-i, init [NAME]		Initialize named config file (~/.config/go-archive-it/[NAME].yaml)
+	-p, path [NAME]		Use named config file (~/.config/go-archive-it/[NAME].yaml)
+	-v, verbose		Verbose logging
+	---------------------------------
+	Running with no arguments will use the default config file (~/.config/go-archive-it/config.yaml)
+	`
 
 	if len(os.Args) < 2 {
 		log.Print("Running with no arguments\n")
