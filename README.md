@@ -81,9 +81,8 @@ brew install go-archive-it
 - [ ] Default config initialization option (templates)
 - [x] Archive the path beggining at the directory being archived rather than including the directories above it
   - ~~The program does currently ignore their other contents, but the nesting is still mildly annoying when accessing the archives~~
-- [ ] Fix symlink behaviour
-  - The program currently stops when it encounters a symlink
-=======
+- [x] Fix symlink behaviour
+  - ~~The program currently stops when it encounters a symlink~~
 - [ ] Distribute vie nixpkgs
 
 ## Dependencies
