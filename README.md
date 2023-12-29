@@ -1,6 +1,5 @@
 ![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/korbexmachina/go-archive-it?style=for-the-badge)
 ![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/korbexmachina/go-archive-it/latest?style=for-the-badge)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/korbexmachina/go-archive-it?style=for-the-badge)
 [![goreleaser](https://github.com/korbexmachina/go-archive-it/actions/workflows/release.yaml/badge.svg)](https://github.com/korbexmachina/go-archive-it/actions/workflows/release.yaml)
 
 # Go Archive It!
