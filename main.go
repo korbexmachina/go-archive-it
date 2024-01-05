@@ -56,11 +56,11 @@ func main() {
 			} else {
 				name = "go-archive-it/" + os.Args[2]
 			}
-			utils.ConfigExists(filepath.Join(configDir, name + ".yaml"))
+			utils.ConfigExists(filepath.Join(configDir, name+".yaml"))
 			os.Exit(0)
 		case "-p", "path":
 			name := "go-archive-it/" + os.Args[2]
-			configPath = filepath.Join(configDir, name + ".yaml")
+			configPath = filepath.Join(configDir, name+".yaml")
 			log.Printf("Running with named config: %s", configPath)
 		case "-v", "verbose":
 			verbose = true
