@@ -6,7 +6,7 @@
 
 A lightweight archive management utility with YAML based configuration.
 
-In a world where your files and data are increasingly stored and controlled by large corporations, there are those who wish to take that power back. However, with great power comes great responsibility, and it is important to practice good data stewardship. A good place to start is by keeping rolling backups, a process which _Go Archive It_ aims to make as straightforward and painless as possible.
+In a world where your files and data are increasingly stored and controlled by large corporations, there are those who wish to take back control. However, with great power comes great responsibility, and it is important to practice good data stewardship. A good place to start is by keeping rolling backups, a process which _Go Archive It_ aims to make as straightforward and painless as possible.
 
 ## Documentation
 
@@ -14,7 +14,7 @@ Full documentation available [here](https://korbexmachina.github.io/go-archive-i
 
 ## Usage
 
-- I reccommend using a cronjob to automate your archives
+- I reccommend using cron to automate your archives
   - If you are using the homebrew installation, that might look something like this:
     ```
     # Run go-archive-it at 9am every day, output logs to ~/logs/go-archive-it.txt
