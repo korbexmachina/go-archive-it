@@ -11,12 +11,11 @@ import (
 
 // Config is a struct used to parse configuration files
 type Config struct {
-	VaultPath []string
+	VaultPath   []string
 	ArchivePath string
 	ArchiveType uint8
-	Retention uint8
+	Retention   uint8
 }
-
 
 /*
 ConfigExists checks if a config file exists at a specified location
@@ -33,10 +32,10 @@ func ConfigExists(configPath string) {
 		}
 
 		config := Config{
-			VaultPath: []string{"~/example", "~/directories"},
+			VaultPath:   []string{"~/example", "~/directories"},
 			ArchivePath: "~/archive",
 			ArchiveType: 1,
-			Retention: 10,
+			Retention:   10,
 		}
 
 		c, err := yaml.Marshal(config) // Serialize the struct
@@ -44,7 +43,7 @@ func ConfigExists(configPath string) {
 			log.Fatalf("Failed to serialize data: %v", err)
 		}
 
-		err = ioutil.WriteFile(configPath, c, os.ModeAppend | 0664)
+		err = ioutil.WriteFile(configPath, c, os.ModeAppend|0664)
 		if err != nil {
 			log.Fatalf("Unable to write file: %v", err)
 		}
