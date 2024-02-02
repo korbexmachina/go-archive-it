@@ -19,7 +19,6 @@ import (
 Archive takes 3 arguments, and calls the appropriate archive function, passing on it's other arguments.
 
 args:
-
 	vaultPath string: The path to the directory that will be archived
 	archivePath string: The name of the directory where all of the archives are to be stored
 	archiveType uint8: The type of archive that is to be created
@@ -111,14 +110,14 @@ func tarArchive(vaultPath string, archive io.Writer) error {
 	// Traverse the directory and all of its subdirectories and add each file found to the archive
 	err = filepath.Walk(vaultPath,
 		func(path string, info os.FileInfo, err error) error {
-			if !info.IsDir() {
-				err = addFile(tw, path, vaultPath)
-				if err != nil {
-					return err
+				if !info.IsDir() {
+					err = addFile(tw, path, vaultPath)
+					if err != nil {
+						return err
+					}
 				}
-			}
 			return nil
-		})
+	})
 	if err != nil {
 		return err
 	}
@@ -230,7 +229,7 @@ func Cleanup(archivePath string, retention uint8, verbose bool) error {
 
 // isSymlink takes a path as an argument and returns a bool and an error
 // isSymlink returns true if the path is a symlink, and false if it is not
-func isSymlink(path string) (bool, error) {
+func isSymlink (path string) (bool, error) {
 	_, err := os.Readlink(path) // Check if the path is a symlink
 	if err != nil {
 		return false, nil // If it is not a symlink, return false
