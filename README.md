@@ -82,7 +82,7 @@ brew install go-archive-it
   - ~~The program does currently ignore their other contents, but the nesting is still mildly annoying when accessing the archives~~
 - [x] Fix symlink behaviour
   - ~~The program currently stops when it encounters a symlink~~
-- [ ] Distribute vie nixpkgs
+- [ ] Distribute via nixpkgs
 
 ## Dependencies
 [yaml.v3](https://pkg.go.dev/gopkg.in/yaml.v3) - see `notice.md` for details
